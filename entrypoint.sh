@@ -14,4 +14,4 @@ cd /latex
 
 echo "Compilation du latex en pdf"
 
-pdflatex -output-directory=/latex/user_content/output -jobname=${OUTPUT_PDF_FILENAME} ${ENTRYPOINT_LATEX_FILE}
+pdflatex -shell-escape -output-directory=/latex/user_content/output -jobname=${OUTPUT_PDF_FILENAME} ${ENTRYPOINT_LATEX_FILE}
