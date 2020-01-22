@@ -14,7 +14,8 @@ RUN	apt-get -y update && \
 	apt-get -y install cmake && \
 	apt-get -y install make
 
-RUN	apt-get -y install python-pygments
+RUN	apt-get -y install python-pygments && \
+	apt-get -y install python
 
 RUN	mkdir /latex
 
