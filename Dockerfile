@@ -12,8 +12,9 @@ RUN	apt-get -y update && \
 	apt-get -y install texlive-lang-all && \
 	apt-get -y install texlive-full && \
 	apt-get -y install cmake && \
-	apt-get -y install make && \
-	apt-get -y install pygmentize
+	apt-get -y install make
+
+RUN	apt-get -y install python-pygments
 
 RUN	mkdir /latex
 
