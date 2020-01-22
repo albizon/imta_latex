@@ -16,8 +16,8 @@ RUN	apt-get -y update && \
 
 RUN	mkdir /latex
 
-COPY	imta/* /latex
-COPY	dependencies/* /latex
+COPY	imta/* /latex/
+COPY	dependencies/* /latex/
 COPY	entrypoint.sh /
 
 VOLUME	["/latex/user_content"]
