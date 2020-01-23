@@ -10,11 +10,13 @@ ENV	OUTPUT_PDF_FILENAME=out.pdf \
 RUN     apt-get -y update
 
 RUN     apt-get -y install python && \
-        apt-get -y install python-pygments
+        apt-get -y install python-pygments && \
+	apt-get -y install python2-pygments
 
 RUN	apt-get -y install texlive-latex-base && \
 	apt-get -y install texlive-lang-all && \
 	apt-get -y install texlive-full && \
+	apt-get -y install texlive-latexextra && \
 	apt-get -y install cmake && \
 	apt-get -y install make
 
