@@ -7,15 +7,16 @@ ENV	OUTPUT_PDF_FILENAME=out.pdf \
 	ENTRYPOINT_LATEX_FILE=in.tex \
 	DEBIAN_FRONTEND=noninteractive
 
-RUN	apt-get -y update && \
-	apt-get -y install texlive-latex-base && \
+RUN     apt-get -y update
+
+RUN     apt-get -y install python && \
+        apt-get -y install python-pygments
+
+RUN	apt-get -y install texlive-latex-base && \
 	apt-get -y install texlive-lang-all && \
 	apt-get -y install texlive-full && \
 	apt-get -y install cmake && \
 	apt-get -y install make
-
-RUN	apt-get -y install python-pygments && \
-	apt-get -y install python
 
 RUN	mkdir /latex
 
