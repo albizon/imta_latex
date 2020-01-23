@@ -11,7 +11,7 @@ RUN     apt-get -y update
 
 RUN     apt-get -y install python && \
         apt-get -y install python-pygments && \
-	apt-get -y install python2-pygments
+	apt-get -y install python3-pygments
 
 RUN	apt-get -y install texlive-latex-base && \
 	apt-get -y install texlive-lang-all && \
