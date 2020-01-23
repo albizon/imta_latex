@@ -18,4 +18,4 @@ pdflatex -shell-escape -output-directory=/latex/user_content/output -jobname=${O
 
 echo "Changement des droits sur les fichiers de sortie"
 
-chmod -R 666 /laext/user_content
+chmod -R 666 /latex/user_content
