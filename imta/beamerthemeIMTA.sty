@@ -121,67 +121,66 @@
 
 % PART PAGE
 % Exemple : 
-% \AtBeginPart{%
-%  \begin{frame}<beamer>[background=page_3]
-%    \partpage
-%  \end{frame}
-% }%
-% \setbeamercolor*{part name}{fg=white}
-% \setbeamercolor*{part title}{fg=Vert}
-% \defbeamertemplate*{part page}{IMTA theme}[1][]{
-%   % \setbeamertemplate{background}{\pgfuseimage{background_page_3}}
-%   \vskip3.5ex\hskip10em\par
-%   {\usebeamerfont{part name}\usebeamercolor[fg]{part name}\partname}
-%   \begin{centering}
-%     \vskip16ex\par
-%     \begin{beamercolorbox}[sep=8pt,center,#1]{part title}
-%       \usebeamerfont{part title}\insertpart\par
-%     \end{beamercolorbox}
-%   \end{centering}
-% }
-% \setbeamertemplate{part page}[IMTA theme][colsep=-4bp,rounded=true,shadow=\beamer@themeIMTA@shadow]
+ \AtBeginPart{%
+  \begin{frame}<beamer>[background=page_3]
+    \partpage
+  \end{frame}
+ }%
+ \setbeamercolor*{part name}{fg=white}
+ \setbeamercolor*{part title}{fg=Vert}
+ \defbeamertemplate*{part page}{IMTA theme}[1][]{
+   % \setbeamertemplate{background}{\pgfuseimage{background_page_3}}
+   \vskip3.5ex\hskip10em\par
+   {\usebeamerfont{part name}\usebeamercolor[fg]{part name}\partname}
+   \begin{centering}
+     \vskip16ex\par
+     \begin{beamercolorbox}[sep=8pt,center,#1]{part title}
+       \usebeamerfont{part title}\insertpart\par
+     \end{beamercolorbox}
+   \end{centering}
+ }
+ \setbeamertemplate{part page}[IMTA theme][colsep=-4bp,rounded=true,shadow=\beamer@themeIMTA@shadow]
 
-% \setbeamertemplate{sections/subsections in toc}[ball]
+ \setbeamertemplate{sections/subsections in toc}[ball]
 
 
 % FOOTLINE
-% \newcommand{\firstfoot}{\insertframenumber{} / \inserttotalframenumber}
-% \newcommand{\secondfoot}{\insertshortauthor}
-% \newcommand{\thirdfoot}{\insertshorttitle}
+ \newcommand{\firstfoot}{\insertframenumber{} / \inserttotalframenumber}
+ \newcommand{\secondfoot}{\insertshortauthor}
+ \newcommand{\thirdfoot}{\insertshorttitle}
+ \setbeamercolor{firstfoot}{fg=white}
+ \setbeamercolor{secondfoot}{fg=white}
+ \setbeamercolor{thirdfoot}{fg=black}
 
-% \setbeamercolor{firstfoot}{fg=white}
-% \setbeamercolor{secondfoot}{fg=white}
-% \setbeamercolor{thirdfoot}{fg=black}
+ \setbeamerfont{firstfoot}{size=\scriptsize}
+ \setbeamerfont{secondfoot}{size=\scriptsize}
+ \setbeamerfont{thirdfoot}{size=\scriptsize}
 
-% \setbeamerfont{firstfoot}{size=\scriptsize}
-% \setbeamerfont{secondfoot}{size=\scriptsize}
-% \setbeamerfont{thirdfoot}{size=\scriptsize}
-
-% \defbeamertemplate*{footline}{IMTA theme}{%
-%   \ifthenelse{\boolean{beamer@imta@title}}{%
-%   }{%
-%     \leavevmode%
-%     \hbox{
-%       \begin{beamercolorbox}[wd=.15\paperwidth,ht=5ex,dp=2.25ex,leftskip=.3cm plus1fill,rightskip=.3cm]{firstfoot}%
-%         \usebeamerfont{firstfoot}%
-%         \firstfoot%
-%       \end{beamercolorbox}%
-%       \begin{beamercolorbox}[wd=.3\paperwidth,ht=5ex,dp=2.25ex,leftskip=.5cm,rightskip=.3cm plus1fill]{secondfoot}%
-%         \usebeamerfont{secondfoot}
-%         \secondfoot%
-%       \end{beamercolorbox}%
-%       \begin{beamercolorbox}[wd=.4\paperwidth,ht=5ex,dp=2.25ex,leftskip=.2cm,rightskip=.3cm plus1fill]{thirdfoot}%
-%         \usebeamerfont{thirdfoot}
-%         \thirdfoot%
-%       \end{beamercolorbox}%
-%     }%
-%     \vskip3.6pt%
-%   }
-% }
-% \newcommand{\GreenOnWhiteStyle}{
-%   \renewcommand{\backgroundtype}{2}
-%   \renewcommand{\defaulttitlecolor}{VertClair}
-% }
+ \defbeamertemplate*{footline}{IMTA theme}{%
+   \ifthenelse{\boolean{beamer@imta@title}}{%
+   }{%
+     \leavevmode%
+     \hbox{
+       \begin{beamercolorbox}[wd=.15\paperwidth,ht=5ex,dp=2.25ex,leftskip=.3cm plus1fill,rightskip=.3cm]{firstfoot}%
+         \usebeamerfont{firstfoot}%
+         \firstfoot%
+       \end{beamercolorbox}%
+       \begin{beamercolorbox}[wd=.3\paperwidth,ht=5ex,dp=2.25ex,leftskip=.5cm,rightskip=.3cm plus1fill]{secondfoot}%
+         \usebeamerfont{secondfoot}
+         \secondfoot%
+       \end{beamercolorbox}%
+       \begin{beamercolorbox}[wd=.4\paperwidth,ht=5ex,dp=2.25ex,leftskip=.2cm,rightskip=.3cm plus1fill]{thirdfoot}%
+         \usebeamerfont{thirdfoot}
+         \thirdfoot%
+       \end{beamercolorbox}%
+     }%
+     \vskip3.6pt%
+   }
+ }
+ \newcommand{\GreenOnWhiteStyle}{
+   \renewcommand{\backgroundtype}{2}
+   \renewcommand{\defaulttitlecolor}{VertClair}
+ }
 
 % FRAMETITLE
 \newcommand{\defaulttitlecolor}{black}
