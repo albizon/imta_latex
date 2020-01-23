@@ -1,0 +1,212 @@
+\mode<presentation>
+\RequirePackage{tikz}
+% Control of shadows for blocks
+\def\beamer@themeIMTA@shadow{true}
+\newcommand{\withoutshadow}{\def\beamer@themeIMTA@shadow{false}}
+
+\newcommand{\insertdocumentref}{}
+
+% Basic colors for the theme
+\RequirePackage{IMTAcolors}
+
+\setbeamercolor{structure}{fg=BleuMarine}
+\setbeamercolor*{alerted text}{fg=Vert}
+
+\setbeamercolor*{palette primary}{fg=white}
+\setbeamercolor*{palette secondary}{fg=BleuLogo}
+\setbeamercolor*{palette tertiary}{fg=BleuLogo}
+\setbeamercolor*{palette quaternary}{fg=Vert}
+
+% ITEMIZE
+\setbeamercolor*{itemize item}{fg=Vert}
+\setbeamercolor*{itemize subitem}{fg=Vert}
+\setbeamercolor*{itemize subsubitem}{fg=Vert}
+
+\setbeamercolor*{itemize/enumerate body}{parent=normal text}
+\setbeamercolor*{itemize/enumerate subbody}{parent=normal text}
+\setbeamercolor*{itemize/enumerate subsubbody}{parent=normal text}
+
+\setbeamertemplate{navigation symbols}{}
+
+
+% BLOCKS
+\setbeamercolor{block title}{use=structure,fg=white,bg=structure.fg}
+\setbeamercolor{block title alerted}{use=alerted text,fg=white,bg=alerted text.fg}
+
+\setbeamercolor{block body}{parent=normal text,use=block title,bg=block title.bg!10!bg}
+\setbeamercolor{block body alerted}{parent=normal text,use=block title alerted,bg=block title alerted.bg!10!bg}
+
+\setbeamerfont{block title}{size={}}
+
+\setbeamersize{text margin left=2em,text margin right=1em}
+
+% TITLE PAGE
+\usepackage{xkeyval}
+\usepackage{ifthen}
+\makeatletter
+\newboolean{beamer@imta@title}
+\setboolean{beamer@imta@title}{false}
+\define@boolkey{beamerframe}{title}[true]{
+  \setboolean{beamer@imta@title}{#1}%
+  %option t from beamer
+  \beamer@frametopskip=.2cm plus .5\paperheight\relax%
+  \beamer@framebottomskip=0pt plus 1fill\relax%
+  \beamer@frametopskipautobreak=\beamer@frametopskip\relax%
+  \beamer@framebottomskipautobreak=\beamer@framebottomskip\relax%
+  \def\beamer@initfirstlineunskip{%
+    \def\beamer@firstlineitemizeunskip{%
+      \vskip-\partopsep\vskip-\topsep\vskip-\parskip%
+      \global\let\beamer@firstlineitemizeunskip=\relax}%
+    \everypar{\global\let\beamer@firstlineitemizeunskip=\relax}}
+}
+\presetkeys{beamerframe}{title=false}{}
+\setbeamercolor*{titlelike}{fg=white}
+\setbeamercolor*{author}{fg=black}
+\setbeamercolor*{institute}{fg=black}
+\setbeamercolor*{date}{fg=black}
+
+\setbeamerfont{title}{size=\huge}
+\setbeamerfont{subtitle}{size=\LARGE}
+\setbeamerfont{author}{size=\normalsize}
+\setbeamerfont{documentref}{size=\normalsize}
+\setbeamerfont{date}{size=\small}
+
+% BACKGROUND
+\setbeamertemplate{background}{
+  \ifthenelse{\boolean{beamer@imta@title}}{%
+    \begin{tikzpicture}
+      \node[anchor=north west] at (0.6,-0.6) {\includegraphics[width=4.2cm]{IMT_Atlantique_logo_RVB}};
+      \node[coordinate] (A) at (0,-76mm) {};
+      \node[coordinate] (B) at (76mm,0) {};
+      \node[coordinate] (middle) at (barycentric cs:A=0.5,B=0.5) {};
+      \node[coordinate] (C) at (96mm,-96mm) {};
+      \fill[BleuLogo] (A) -- (middle) -- (C) -- (0,-96mm) -- (A);
+      \fill[Vert] (middle) -- (C) -- (128mm,-96mm) -- (128mm,0) -- (B) -- cycle;
+    \end{tikzpicture}
+  }{}%
+}
+
+\defbeamertemplate*{title page}{IMTA theme}[1][]{
+    \begin{tikzpicture}
+      \node[minimum width=11.3cm,minimum height=9cm,inner sep=0mm] (pipo) at (0,0) {};%draw=yellow,
+      \node[left,inner sep=0pt] (title) at (5.65,.94) {%
+        \begin{beamercolorbox}[wd={7.6cm},right,#1]{title}
+          \usebeamerfont{title}\inserttitle\par%
+          \ifx\insertsubtitle\@empty%
+          \else%
+            \vskip0.25cm%
+            {\usebeamerfont{subtitle}\insertsubtitle\par}%
+          \fi%
+        \end{beamercolorbox}%
+      };
+      %\draw[red] (title.east) -- (title.west);
+      \node[] (info) at (-2.85,-3) {
+        \begin{beamercolorbox}[sep=2pt,center,wd={5cm}]{title}
+          \ifx\insertauthor\@empty%
+          \else%
+          {\usebeamerfont{author}\insertauthor\par}%
+          \fi
+          \usebeamerfont{documentref}%
+          \ifx\insertdocumentref\@empty%
+          \else%
+          \insertdocumentref\par%
+          \fi%
+          \usebeamerfont{date}\insertdate%
+        \end{beamercolorbox}%
+      };
+      %\draw[red] (info.south) -- (info.north);
+    \end{tikzpicture}
+}
+\setbeamertemplate{title page}[IMTA theme][]
+
+% PART PAGE
+% Exemple : 
+% \AtBeginPart{%
+%  \begin{frame}<beamer>[background=page_3]
+%    \partpage
+%  \end{frame}
+% }%
+% \setbeamercolor*{part name}{fg=white}
+% \setbeamercolor*{part title}{fg=Vert}
+% \defbeamertemplate*{part page}{IMTA theme}[1][]{
+%   % \setbeamertemplate{background}{\pgfuseimage{background_page_3}}
+%   \vskip3.5ex\hskip10em\par
+%   {\usebeamerfont{part name}\usebeamercolor[fg]{part name}\partname}
+%   \begin{centering}
+%     \vskip16ex\par
+%     \begin{beamercolorbox}[sep=8pt,center,#1]{part title}
+%       \usebeamerfont{part title}\insertpart\par
+%     \end{beamercolorbox}
+%   \end{centering}
+% }
+% \setbeamertemplate{part page}[IMTA theme][colsep=-4bp,rounded=true,shadow=\beamer@themeIMTA@shadow]
+
+% \setbeamertemplate{sections/subsections in toc}[ball]
+
+
+% FOOTLINE
+% \newcommand{\firstfoot}{\insertframenumber{} / \inserttotalframenumber}
+% \newcommand{\secondfoot}{\insertshortauthor}
+% \newcommand{\thirdfoot}{\insertshorttitle}
+
+% \setbeamercolor{firstfoot}{fg=white}
+% \setbeamercolor{secondfoot}{fg=white}
+% \setbeamercolor{thirdfoot}{fg=black}
+
+% \setbeamerfont{firstfoot}{size=\scriptsize}
+% \setbeamerfont{secondfoot}{size=\scriptsize}
+% \setbeamerfont{thirdfoot}{size=\scriptsize}
+
+% \defbeamertemplate*{footline}{IMTA theme}{%
+%   \ifthenelse{\boolean{beamer@imta@title}}{%
+%   }{%
+%     \leavevmode%
+%     \hbox{
+%       \begin{beamercolorbox}[wd=.15\paperwidth,ht=5ex,dp=2.25ex,leftskip=.3cm plus1fill,rightskip=.3cm]{firstfoot}%
+%         \usebeamerfont{firstfoot}%
+%         \firstfoot%
+%       \end{beamercolorbox}%
+%       \begin{beamercolorbox}[wd=.3\paperwidth,ht=5ex,dp=2.25ex,leftskip=.5cm,rightskip=.3cm plus1fill]{secondfoot}%
+%         \usebeamerfont{secondfoot}
+%         \secondfoot%
+%       \end{beamercolorbox}%
+%       \begin{beamercolorbox}[wd=.4\paperwidth,ht=5ex,dp=2.25ex,leftskip=.2cm,rightskip=.3cm plus1fill]{thirdfoot}%
+%         \usebeamerfont{thirdfoot}
+%         \thirdfoot%
+%       \end{beamercolorbox}%
+%     }%
+%     \vskip3.6pt%
+%   }
+% }
+% \newcommand{\GreenOnWhiteStyle}{
+%   \renewcommand{\backgroundtype}{2}
+%   \renewcommand{\defaulttitlecolor}{VertClair}
+% }
+
+% FRAMETITLE
+\newcommand{\defaulttitlecolor}{black}
+\define@key{beamerframe}{title color}{\def\beamer@imta@titlecolor{#1}}%
+\presetkeys{beamerframe}{title color=\defaulttitlecolor}{}
+\setbeamercolor{frametitle}{fg=\beamer@imta@titlecolor,bg=gray!30}
+\setbeamerfont{frametitle}{size=\large}
+\defbeamertemplate*{frametitle}{IMTA theme}{%
+  \ifbeamercolorempty[bg]{frametitle}{}{\nointerlineskip}%
+  \@tempdima=\textwidth%
+  \advance\@tempdima by\beamer@leftmargin%
+  \advance\@tempdima by\beamer@rightmargin%
+%%% FD: don't know why we need to enlarge more and to move the the title to the left
+  \advance\@tempdima by 2mm%
+  \hspace{-2.3mm}\begin{beamercolorbox}[sep=0.3cm,left,wd=\the\@tempdima]{frametitle}%
+    \usebeamerfont{frametitle}%
+    \vbox{}%\vskip-1.7ex%
+%    \if@tempswa\else\csname beamer@fte#1\endcsname\fi%
+    \hspace{0.4cm}\strut\insertframetitle\strut\hspace{0pt plus 1 filll}%
+    \insertframenumber{} / \inserttotalframenumber%
+    \par%
+%    \if@tempswa\else\vskip-.3cm\fi% set inside beamercolorbox... evil here...
+  \end{beamercolorbox}%
+  \vskip-1ex%
+}
+
+\mode
+<all>
